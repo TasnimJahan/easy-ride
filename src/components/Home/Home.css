@@ -1,0 +1,28 @@
+.equipment{
+    margin-top: 5%;
+}
+.card-img-top{
+    height: 12rem;
+    padding: 10%;
+}
+.card-title{
+    text-align: center;
+    text-transform: uppercase;
+}
+.card-body{
+    padding:0px!important;
+}
+.card{
+    margin-bottom: 5%;
+}
+
+@media (max-width: 688px){
+    .col {
+        width: 74%;
+        margin: 4% auto;
+    }
+    .card-img-top {
+        height: 15rem;
+        padding: 10%;
+    }
+}

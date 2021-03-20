@@ -1,0 +1,37 @@
+[{
+    "id": 1,
+    "title": "bus",
+    "image": "https://www.linkpicture.com/q/bus_1.png",
+    "seat": 30,
+    "rent": "50$"
+  }, {
+    "id": 2,
+    "title": "car",
+    "image": "https://www.linkpicture.com/q/car1_2.png",
+    "seat": 4,
+    "rent": "70$"
+  }, {
+    "id": 3,
+    "title": "train",
+    "image": "https://www.linkpicture.com/q/train1.png",
+    "seat": 85,
+    "rent": "300$"
+  }, {
+    "id": 4,
+    "title": "bike",
+    "image": "https://linkpicture.com/q/bike.png",
+    "seat": 2,
+    "rent": "40$"
+  }, {
+    "id": 5,
+    "title": "taxy",
+    "image": "https://www.linkpicture.com/q/taxi.png",
+    "seat": 3,
+    "rent": "30$"
+  }, {
+    "id": 6,
+    "title": "cab",
+    "image": "https://www.linkpicture.com/q/cab.png",
+    "seat": 4,
+    "rent": "90$"
+  }]

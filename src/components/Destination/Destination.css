@@ -1,0 +1,76 @@
+.destinationDiv{
+    display: flex;
+    justify-content: space-between;
+}
+.destinationSearch{
+    border-radius:10px!important;
+    width: 38%!important;
+    padding:3%;
+    background-color: #e9e8e3;
+}
+.destinationSearch input{
+    border: none;
+    width: 100%;
+    padding:2%;
+    background: #fff;
+    margin-bottom: 2%;
+}
+.destinationSearch p{
+    text-align:left;
+    margin-bottom:0;
+}
+.btn{
+    margin-top: 5%!important;
+    width:100%
+}
+.map{
+    margin-left: 2%;
+    border-radius: 10px!important;
+}
+.sourceAndDestination{
+    background-color: darkorange;
+}
+.sourceAndDestination input{
+    background-color:darkorange;
+    color:white;
+}
+.vehiclePic img{
+    width: 85%;
+}
+.instrument {
+    margin-top: 30px;
+}
+#gotoDestination{
+    display: none;
+}
+.loginBtn{
+    cursor: pointer;
+}
+
+@media (max-width: 688px){
+    .destinationDiv{
+        display: block;
+        justify-content: space-between;
+    }
+    .destinationSearch {
+        width: 100%!important;
+        margin-bottom: 5%;
+    }
+    
+    .map iframe{
+        width: 100%!important;
+        margin-bottom:5%
+    }
+    .vehiclePic img {
+        width: 79%;
+        padding-left: 15%;
+        padding-top: 5%;
+    }
+    .vehiclePicDiv{
+        width:100%;
+    }
+    .destinationSearch p {
+        text-align: center;
+        margin-bottom: 0;
+    }
+}
