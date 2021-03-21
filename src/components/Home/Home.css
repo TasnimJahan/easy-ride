@@ -15,7 +15,13 @@
 .card{
     margin-bottom: 5%;
 }
-
+.navbar-light .navbar-toggler-icon {
+    background-color: #adaaaa;
+    width: 2rem;
+}
+.card{
+    background-color:#e9ff00;
+}
 @media (max-width: 688px){
     .col {
         width: 74%;

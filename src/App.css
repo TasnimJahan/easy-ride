@@ -2,7 +2,7 @@
   text-align: center;
 }
 body{
-  background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1) ), url(../src/images/Bg.png);
+  background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1) ), url(../src/images/road.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

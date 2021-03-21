@@ -48,22 +48,45 @@ const Login = () => {
         photo:''
       })
 
+
+      // Handle error
+      const handleError = ()=> {
+        const passwordValue = document.getElementById("password").value;
+        const confirmPasswordValue = document.getElementById("confirmPassword").value;
+        const unMatchPassword = document.getElementById("unMatchPassword");
+        if (passwordValue !== confirmPasswordValue) {
+          unMatchPassword.style.display ="block";
+        }
+      }
        //Handle blur
        const handleBlur=(event)=>{
         let isFormValid=true;
         if (event.target.name ==='email') {
           const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
           isFormValid =  re.test(String(event.target.value).toLowerCase());
+          const isFormValid2 =  re.test(String(event.target.value).toLowerCase());
+          if(!isFormValid2){
+            document.getElementById("inValidMail").style.display="block";
+            document.getElementById("inValidPassword").style.display = "none";
+            document.getElementById("unMatchPassword").style.display="none";
+          }
         }
         if (event.target.name === 'password') {
           const isPasswordValid = event.target.value.length >6;
           const passHasNumber = /\d{1}/.test(event.target.value);
-          isFormValid = isPasswordValid && passHasNumber;
+          const passwordValue = document.getElementById("password").value;
+          const confirmPasswordValue = document.getElementById("confirmPassword").value
+          const isPasswordSame = passwordValue === confirmPasswordValue;
+          if(!isPasswordValid || !passHasNumber){
+            document.getElementById("inValidPassword").style.display = "block";
+            document.getElementById("unMatchPassword").style.display="none";
+            document.getElementById("inValidMail").style.display="none";    
+          }
+          isFormValid = isPasswordValid && passHasNumber && isPasswordSame;
         }
         if(isFormValid) {
           const newUserInfo = {...user, [event.target.name] : event.target.value};
           setUser(newUserInfo);
-          console.log(newUserInfo);
         }
       }
 
@@ -71,21 +94,16 @@ const Login = () => {
       //Handle submit
       const handleSubmit = (e)=>{
         e.preventDefault(); 
-        console.log(user.email, user.password, user.userName);
         // for a new user
         if(newUser && user.email && user.password){
           firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
             .then((userCredential) => {
               var User = userCredential.user;
-              console.log(User);
               updateUserName(user.userName);
               setLoggedInUser(user);
               history.replace(from);
-              console.log(loggedInUser);
               const newUserInfo = {...User , error :'' , success : true};
               setUser(newUserInfo);
-              console.log(user);
-              console.log(user.userName);
             })
             .catch((error) => {
               var errorCode = error.code;
@@ -98,26 +116,19 @@ const Login = () => {
         }
         // for a old user
         if(!newUser && user.email && user.password){
-          console.log(user.userName);
           firebase.auth().signInWithEmailAndPassword(user.email, user.password)
             .then((userCredential) => {
-              console.log(userCredential);
               const oldUser = userCredential.user;
-              console.log(oldUser);
               setLoggedInUser(oldUser);
               history.replace(from);
-              console.log(loggedInUser);
               const newUserInfo = {...oldUser, error:'', success:true}
               setUser(newUserInfo);
-              
-              console.log(user);
             })
             .catch((error) => {
               var errorCode = error.code;
               var errorMessage = error.message;
               const newUserInfo = {...user, error:errorMessage, success:false}
               setUser(newUserInfo);
-              console.log(user);
             });
         }
       }
@@ -134,8 +145,7 @@ const Login = () => {
           });
       }
       
-
-
+      //Login and Registration page handling
       const handleRegistrationPageView =()=>{
           document.getElementById("registrationPage").style.display='block';
           document.getElementById("loginPage").style.display='none';
@@ -147,45 +157,43 @@ const Login = () => {
 
     return (
         <div className="container">
-      
+            {/* Login Form */}
             <div className="loginPage" id="loginPage">
                 <h2>Login</h2>
                 <form action="" onSubmit={handleSubmit}>
                 <input type="email" onBlur={handleBlur} name="email" id="" placeholder="Email" required/>
                 <br/>
                 <input type="password" onBlur={handleBlur} name="password" id="" placeholder="Password" required/>          
-                <button className="loginBtn btn btn-warning"><input type="submit" value="Login"/></button>
+                <button onClick={handleError} className="loginBtn btn btn-warning"><input type="submit" value="Login"/></button>
                 </form>
                 <p>Don't have an account? <a onClick={handleRegistrationPageView} ><span onClick={()=>{setNewUser(!newUser)}} >Create an account</span></a></p>
-
+                <h5 id="inValidMail" style={{color:'red', textAlign:'center'}}>Please give a correct email address</h5>
+                <h5 id="inValidPassword" style={{color:'red', textAlign:'center'}}>Please give the correct password</h5>
                 <h3 style={{color:'red'}}>{user.error}</h3>
                 {
                     user.success && <h3 style={{color:'green'}}>User Logged in successfully</h3>
                 }
-
-             </div>
-
-            
+             </div>   
+             {/* Registration form     */}
             <div className="registration" id="registrationPage">
                 <h2>Create an account</h2>
                 <form action="" onSubmit={handleSubmit}>
                 <input type="text" name="userName" onBlur={handleBlur} placeholder="Name" />
                 <input type="email" onBlur={handleBlur} name="email" id="" placeholder="Email" required/>
                 <br/>
-                <input type="password" onBlur={handleBlur} name="password" id="" placeholder="Password" required/>
-                <input type="password"  name="confirmPassword" id="" placeholder="Confirm Password" required/>          
-                <button className="loginBtn btn btn-warning"><input type="submit" value="Create an account"/></button>
+                <input type="password" onBlur={handleBlur} name="password" id="password" placeholder="Password" required/>
+                <input type="password" onBlur={handleBlur} name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required/>          
+                <button  onClick={handleError}  className="loginBtn btn btn-warning"><input type="submit" value="Create an account"/></button>
                 </form>
                 <p>Already have an account? <a onClick={handleLoginPageView}><span onClick={()=>{setNewUser(newUser)}}>Login</span></a></p>
-                
+                <h5 id="unMatchPassword" style={{color:'red', textAlign:'center'}}>Please make sure your password matched</h5>
+                <h5 id="inValidMail" style={{color:'red', textAlign:'center'}}>Please set a valid email address</h5>
+                <h5 id="inValidPassword" style={{color:'red', textAlign:'center'}}>Please set a password greater than 6 character and containing at least a number</h5>
                 <h3 style={{color:'red'}}>{user.error}</h3>
                 {
                     user.success && <h3 style={{color:'green'}}>User Created successfully</h3>
                 }
-            </div>
-            
-            
-            
+            </div>   
             <p className="line"><span>Or</span></p>
             <button onClick={handleGoogleSignIn} className="btn btn-primary googleBtn"><FontAwesomeIcon className="icon" icon={faGoogle} />  Continue with Google</button>
             <br/>

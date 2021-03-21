@@ -27,6 +27,9 @@
     margin-left: 2%;
     border-radius: 10px!important;
 }
+.map iframe{
+    border-radius: 10px!important;
+}
 .sourceAndDestination{
     background-color: darkorange;
 }
@@ -36,17 +39,70 @@
 }
 .vehiclePic img{
     width: 85%;
+    padding: 5%;
 }
-.instrument {
-    margin-top: 30px;
+.instrument2,.instrument3,.instrument4 {
+    margin-top: 25px;
 }
-#gotoDestination{
+
+#searchResults{
     display: none;
 }
 .loginBtn{
     cursor: pointer;
 }
 
+#dhanmondi,#badda,#farmgate,#chattogram{
+    display: none;
+}
+
+select {
+    border: 2px solid red;
+    width: 100%;
+    border: none;
+    height: 2.3rem;
+}
+.dot{
+    height: 10px;
+    width: 10px;
+    background-color: white;
+    border-radius: 100%;
+    position:relative;   
+}
+.dot1{
+    top:.4rem;
+    left:2rem;
+}
+.dot2{
+    top: 2.5rem;
+    left: 1.4rem;
+}
+.line{
+    position: relative;
+    top:1rem;
+    left: 1rem;
+    background-color:white;
+    height:2rem;
+    width:.13rem;
+}
+.direction {
+    background-color: orangered;
+    margin: 4% 0.5%;
+    border-radius: 10px;
+    height: 5rem!important;
+}
+#startSpot{
+    position: relative;
+    color: white;
+    top: .4rem;
+    left: 1.5rem;
+}
+#endSpot{
+    position: relative;
+    color:white;
+    top: 2.7rem;
+    left: -2.5rem;
+}
 @media (max-width: 688px){
     .destinationDiv{
         display: block;
@@ -56,21 +112,46 @@
         width: 100%!important;
         margin-bottom: 5%;
     }
-    
+    .searchResult{
+        height: 6rem!important;
+        position: relative;
+    }
     .map iframe{
         width: 100%!important;
         margin-bottom:5%
     }
     .vehiclePic img {
-        width: 79%;
-        padding-left: 15%;
-        padding-top: 5%;
+        width: 25%;
     }
     .vehiclePicDiv{
         width:100%;
     }
     .destinationSearch p {
-        text-align: center;
         margin-bottom: 0;
     }
+    .searchResult p,h5{
+        z-index:2;
+    }
+    .instrument2{
+        position:absolute;
+        top:-5rem;
+        width:10%;
+        left:40%;
+    }
+    .instrument3{
+        position:absolute;
+        top:-5rem;
+        width:10%;
+        left:60%;
+    }
+    .instrument4{
+        position:absolute;
+        top:-5rem;
+        width:10%;
+        left:80%;
+    }
+    .line{
+        height:2.2rem;
+    }
+    
 }

@@ -1,3 +1,6 @@
+a,Link{
+    color:white;
+}
 div#navbarsExample09 {
     margin-left: 38%;
 }
@@ -18,7 +21,7 @@ li.nav-item.nv {
     font-weight: 600;
 }
 .navbar li a{
-    color: black;
+    color: white;
 }
 .navbar-toggler{
     position: absolute;
@@ -26,7 +29,7 @@ li.nav-item.nv {
     border: 1px solid red;
 }
 .navbar-light .navbar-brand {
-    color: rgba(0, 0, 0, 0.9);
+    color: rgb(255, 255, 255);
     font-weight: 600;
     font-size: 3rem;
 }

@@ -6,7 +6,6 @@ import fakeData from '../Data/Data.json'
 
 const Home = () => {  
     const vehicles = fakeData.map(vehicle=> vehicle);
-    console.log(vehicles);
    
     return (
         <div className="container">

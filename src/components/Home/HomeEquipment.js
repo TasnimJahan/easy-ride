@@ -6,7 +6,6 @@ const HomeEquipment = (props) => {
     const history = useHistory()
     const handleVehicle = (vehicle) =>{
         history.push(`/destination/${vehicle}`);
-        console.log(vehicle);
     }
     return (
         <div>       

@@ -70,7 +70,9 @@ p{
   input[type="submit"] {
     border: none;
 }
-
+#unMatchPassword,#inValidMail,#inValidPassword{
+  display:none;
+}
 @media (max-width: 688px){
   .loginPage, .registration {
     width: 80%!important;
